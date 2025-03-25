@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,8 +15,8 @@ namespace Modul6_103022300159
 
         public SayaTubeUser(string username)
         {
-            if (string.IsNullOrEmpty(username) || username.Length > 100)
-                throw new ArgumentException("Username tidak boleh kosong dan maksimal 100 karakter.");
+            Contract.Requires(!string.IsNullOrEmpty(username), "Username tidak boleh null kosong.");
+            Contract.Requires(username.Length <= 100, "Username maksimal 100 karakter.");
 
             this.id = new Random().Next(10000, 99999);
             this.Username = username;
@@ -24,9 +25,7 @@ namespace Modul6_103022300159
 
         public void AddVideo(SayaTubeVideo video)
         {
-            if (video == null)
-                throw new ArgumentNullException("Video tidak boleh kosong.");
-
+            Contract.Requires(video != null, "Video tidak boleh kosong.");
             uploadedVideos.Add(video);
         }
 
@@ -43,10 +42,15 @@ namespace Modul6_103022300159
         public void PrintAllVideoPlaycount()
         {
             Console.WriteLine($"User: {Username}");
-            for (int i = 0; i < uploadedVideos.Count; i++)
+
+            int count = 0;
+            foreach (var video in uploadedVideos)
             {
-                Console.WriteLine($"Video {i + 1} judul: {uploadedVideos[i].GetTitle()}");
+                if (count >= 8) break; 
+                Console.WriteLine($"Video {count + 1} judul: {video.GetTitle()}");
+                count++;
             }
+
             Console.WriteLine($"Total Play Count: {GetTotalVideoPlayCount()}");
         }
     }

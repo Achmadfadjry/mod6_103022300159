@@ -7,13 +7,13 @@ class Program
         SayaTubeUser user = new SayaTubeUser("Achmad fadjry adlil faqih");
 
         string[] videoTitles = {
-            "Review Film Interstellar oleh Achmad fadjry adlil faqih",
-            "Review Film Inception oleh Achmad fadjry adlil faqih",
-            "Review Film The Dark Knight oleh Achmad fadjry adlil faqih",
-            "Review Film The Shawshank Redemption oleh ",
-            "Review Film The Godfather oleh Achmad fadjry adlil faqih",
-            "Review Film The Matrix oleh Achmad fadjry adlil faqih",
-            "Review Film Fight Club oleh Achmad fadjry adlil faqih",
+            "Review Film adit sopo jarwo oleh Achmad fadjry adlil faqih",
+            "Review Film spongebob oleh Achmad fadjry adlil faqih",
+            "Review Film batman oleh Achmad fadjry adlil faqih",
+            "Review Film Superman oleh Achmad fadjry adlil faqih",
+            "Review Film Doraemon oleh Achmad fadjry adlil faqih",
+            "Review Film thenopals oleh Achmad fadjry adlil faqih",
+            "Review Film juki the movie oleh Achmad fadjry adlil faqih",
             "Review Film Parasite oleh Achmad fadjry adlil faqih",
             "Review Film Forrest Gump oleh Achmad fadjry adlil faqih",
             "Review Film Pulp Fiction oleh Achmad fadjry adlil faqih"

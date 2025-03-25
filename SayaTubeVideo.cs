@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics.Contracts;
 
 namespace Modul6_103022300159
 {
@@ -14,8 +15,8 @@ namespace Modul6_103022300159
 
         public SayaTubeVideo(string title)
         {
-            if (string.IsNullOrEmpty(title) || title.Length > 200)
-                throw new ArgumentException("Judul video tidak boleh kosong dan maksimal 200 karakter.");
+            Contract.Requires(!string.IsNullOrEmpty(title), "Judul video tidak boleh null atau kosong.");
+            Contract.Requires(title.Length <= 200, "Judul video maksimal 200 karakter.");
 
             this.id = new Random().Next(10000, 99999); // Generate ID random 5 digit
             this.title = title;
@@ -24,10 +25,20 @@ namespace Modul6_103022300159
 
         public void IncreasePlayCount(int count)
         {
-            if (count < 0 || count > 10000000)
-                throw new ArgumentException("Jumlah play count harus antara 0 dan 10.000.000.");
+            Contract.Requires(count > 0, "Play count harus positif.");
+            Contract.Requires(count <= 25000000, "Play count maksimal 25.000.000 per panggilan.");
 
-            this.playCount += count;
+            try
+            {
+                checked
+                {
+                    this.playCount += count;
+                }
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("ERROR: Penambahan play count melebihi batas integer!");
+            }
         }
 
         public void PrintVideoDetails()
@@ -51,5 +62,8 @@ namespace Modul6_103022300159
 
     
 
-    
+   
+
+
+
 
